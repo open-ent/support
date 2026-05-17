@@ -87,8 +87,31 @@ public enum BugTracker {
         public BugTrackerSyncType getBugTrackerSyncType()
         {
 			return BugTrackerSyncType.SYNC;
-		}		
-	};
+		}
+	},
+    GITHUB
+    {
+        @Override
+        public String getLastIssueUpdateFromPostgresqlJson()
+        {
+            return "->>'updated_at'";
+        }
+        @Override
+        public String getIssueCreationFromPostgresqlJson()
+        {
+            return "->>'created_at'";
+        }
+        @Override
+        public String getStatusIdFromPostgresqlJson()
+        {
+            return "#>>'{state}'";
+        }
+        @Override
+        public BugTrackerSyncType getBugTrackerSyncType()
+        {
+            return BugTrackerSyncType.SYNC;
+        }
+    };
 
 	/**
 	 * @return SQL expression to extract last update time of bug tracker issue from JSON field stored in postgresql

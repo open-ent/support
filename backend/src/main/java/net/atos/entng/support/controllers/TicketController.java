@@ -863,6 +863,13 @@ public class TicketController extends ControllerHelper {
                             });
                 }
 
+                if (escalationService == null) {
+                    log.error("Escalation service is not configured (activate_escalation is disabled).");
+                    if (doResponse) {
+                        renderError(request, new JsonObject().put("error", "support.escalation.service.not.configured"));
+                    }
+                    return;
+                }
                 ticketServiceSql.getIssue(ticketId, getIssueResponse ->
                 {
                     Issue issue = getIssueResponse.isRight() ? getIssueResponse.right().getValue() : null;
@@ -1032,6 +1039,12 @@ public class TicketController extends ControllerHelper {
     @SecuredAction(value = "", type = ActionType.RESOURCE)
     @ResourceFilter(SuperAdminFilter.class)
     public void refreshTicketFromBugTracker(final HttpServerRequest request) {
+        if (escalationService == null) {
+            log.error("Escalation service is not configured (activate_escalation is disabled).");
+            renderError(request, new JsonObject().put("error", "support.escalation.service.not.configured"));
+            return;
+        }
+
         final String ticketId = request.params().get("id");
 
         if (ticketId == null || ticketId.isEmpty()) {
