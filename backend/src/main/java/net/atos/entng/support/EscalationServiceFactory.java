@@ -27,8 +27,9 @@ import net.atos.entng.support.enums.BugTracker;
 import net.atos.entng.support.services.EscalationService;
 import net.atos.entng.support.services.TicketServiceSql;
 import net.atos.entng.support.services.UserService;
-import net.atos.entng.support.services.impl.EscalationServiceRedmineImpl;
+import net.atos.entng.support.services.impl.EscalationServiceGitHubImpl;
 import net.atos.entng.support.services.impl.EscalationServicePivotImpl;
+import net.atos.entng.support.services.impl.EscalationServiceRedmineImpl;
 import net.atos.entng.support.services.impl.EscalationServiceZendeskImpl;
 
 
@@ -46,6 +47,9 @@ public class EscalationServiceFactory {
 
 			case ZENDESK:
 				return new EscalationServiceZendeskImpl(vertx, config, ts, us, storage);
+
+			case GITHUB:
+				return new EscalationServiceGitHubImpl(vertx, config, ts, us, storage);
 
 			default:
 				throw new IllegalArgumentException("Invalid parameter bugTracker");
