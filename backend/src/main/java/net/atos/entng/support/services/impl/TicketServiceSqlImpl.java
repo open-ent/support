@@ -792,7 +792,7 @@ public class TicketServiceSqlImpl extends SqlCrudService implements TicketServic
 
 			// 3. Insert bug tracker issue in ENT, so that local administrators can see it
 			String insertQuery = "INSERT INTO support.bug_tracker_issues(id, ticket_id, content, bugtracker, owner)"
-					+ " VALUES(?, ?, ?::JSON, ?, ?)"
+					+ " VALUES(?::bigint, ?, ?::JSON, ?, ?)"
 					+ " ON CONFLICT ON CONSTRAINT bug_tracker_issues_pkey"
 					+ " DO UPDATE"
 					+ " SET content = excluded.content";
