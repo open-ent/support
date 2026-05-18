@@ -11,6 +11,8 @@ import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.http.HttpHeaders;
+import io.vertx.core.json.JsonArray;
+import org.entcore.common.neo4j.Neo4j;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpClientRequest;
 import io.vertx.core.http.HttpServerRequest;
@@ -112,11 +114,13 @@ public class EscalationServiceGitHubImpl implements EscalationService {
 
         String ownerName = ticket.ownerName != null ? ticket.ownerName
                 : (user != null ? user.getUsername() : "Inconnu");
-        String schoolId = ticket.schoolId != null ? ticket.schoolId : "—";
+        String schoolId = ticket.schoolId != null ? ticket.schoolId : "";
 
-        String body = buildIssueBody(ticket, ownerName, schoolId);
-
-        createGitHubIssue(ticket.subject, body)
+        resolveSchoolLabel(schoolId)
+                .compose(schoolLabel -> {
+                    String body = buildIssueBody(ticket, ownerName, schoolLabel);
+                    return createGitHubIssue(ticket.subject, body);
+                })
                 .compose(ghIssue -> {
                     if (ticket.attachments == null || ticket.attachments.isEmpty()) {
                         return Future.succeededFuture(ghIssue);
@@ -139,10 +143,33 @@ public class EscalationServiceGitHubImpl implements EscalationService {
                 });
     }
 
-    private String buildIssueBody(Ticket ticket, String ownerName, String schoolId) {
+    private Future<String> resolveSchoolLabel(String schoolId) {
+        if (schoolId == null || schoolId.isEmpty()) {
+            return Future.succeededFuture("—");
+        }
+        Promise<String> promise = Promise.promise();
+        String query = "MATCH (s:Structure {id: {id}}) RETURN s.name AS name, s.UAI AS uai";
+        Neo4j.getInstance().execute(query, new JsonObject().put("id", schoolId),
+                msg -> {
+                    JsonArray result = msg.body().getJsonArray("result");
+                    if (result != null && !result.isEmpty()) {
+                        JsonObject row = result.getJsonObject(0);
+                        String name = row.getString("name");
+                        String uai = row.getString("uai");
+                        String label = name != null ? name : schoolId;
+                        if (uai != null && !uai.isEmpty()) label += " (" + uai + ")";
+                        promise.complete(label);
+                    } else {
+                        promise.complete(schoolId);
+                    }
+                });
+        return promise.future();
+    }
+
+    private String buildIssueBody(Ticket ticket, String ownerName, String schoolLabel) {
         return "## Détails du ticket\n\n"
                 + "**Auteur :** " + ownerName + "\n"
-                + "**École :** `" + schoolId + "`\n"
+                + "**École :** " + schoolLabel + "\n"
                 + "**Catégorie :** " + (ticket.category != null ? ticket.category : "—") + "\n"
                 + "**Ticket ENT :** #" + ticket.id.get() + "\n\n"
                 + "---\n\n"
