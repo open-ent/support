@@ -7,7 +7,7 @@ import {
   useIsAdmc,
   useIsAdml,
   useToast,
-} from '@edifice.io/react';
+} from '@open-ent/react';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   IconDownload,
@@ -15,7 +15,7 @@ import {
   IconPlus,
   IconRefresh,
   IconSend,
-} from '@edifice.io/react/icons';
+} from '@open-ent/react/icons';
 import { ReactNode, useCallback, useMemo, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useI18n } from '~/hooks/usei18n';

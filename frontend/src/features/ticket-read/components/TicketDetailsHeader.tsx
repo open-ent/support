@@ -1,4 +1,4 @@
-import { Avatar, Flex, Heading } from '@edifice.io/react';
+import { Avatar, Flex, Heading } from '@open-ent/react';
 import { Ticket } from '~/models';
 import { getAvatarURL } from '~/utils/getAvatarURL';
 import { FormattedDate } from './FormattedDate';

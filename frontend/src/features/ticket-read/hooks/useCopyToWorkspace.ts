@@ -1,5 +1,5 @@
-import { odeServices } from '@edifice.io/client';
-import { useToast } from '@edifice.io/react';
+import { odeServices } from '@open-ent/client';
+import { useToast } from '@open-ent/react';
 import { useState } from 'react';
 import { useI18n } from '~/hooks/usei18n';
 import { isFileTooLarge } from '~/utils';

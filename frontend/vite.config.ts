@@ -46,10 +46,21 @@ export default ({ mode }: { mode: string }) => {
     cacheDir: './node_modules/.vite/support',
 
     resolve: {
+      dedupe: [
+        'react',
+        'react-dom',
+        '@tanstack/react-query',
+        'react-i18next',
+        'i18next',
+        '@open-ent/client',
+        '@open-ent/react',
+        '@open-ent/bootstrap',
+        '@open-ent/utilities',
+      ],
       alias: {
         '@images': resolve(
           __dirname,
-          'node_modules/@edifice.io/bootstrap/dist/images',
+          'node_modules/@open-ent/bootstrap/dist/images',
         ),
       },
     },
@@ -117,7 +128,7 @@ export default ({ mode }: { mode: string }) => {
       server: {
         deps: {
           inline: [
-            '@edifice.io/react',
+            '@open-ent/react',
             'react-i18next',
             'i18next',
             '@tanstack/react-query',

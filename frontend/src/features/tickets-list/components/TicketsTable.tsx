@@ -1,11 +1,11 @@
-import { Table, useIsAdmlcOrAdmc, useToast } from '@edifice.io/react';
+import { Table, useIsAdmlcOrAdmc, useToast } from '@open-ent/react';
 import { useI18n } from '~/hooks/usei18n';
 import { SortableTicketField, SortOrder } from '~/models';
 import {
   IconDownload,
   IconFullScreen,
   IconGroupAvatar,
-} from '@edifice.io/react/icons';
+} from '@open-ent/react/icons';
 import { useQueryClient } from '@tanstack/react-query';
 import { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import { AddAttachments, Flex, useToast } from '@edifice.io/react';
+import { AddAttachments, Flex, useToast } from '@open-ent/react';
 import { useMemo, useState } from 'react';
 import { type TicketAttachment } from '~/models';
 import { useI18n } from '~/hooks/usei18n';

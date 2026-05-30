@@ -1,5 +1,5 @@
-import { Button, EmptyScreen, Flex } from '@edifice.io/react';
-import { IconPlus } from '@edifice.io/react/icons';
+import { Button, EmptyScreen, Flex } from '@open-ent/react';
+import { IconPlus } from '@open-ent/react/icons';
 
 import illuEmptyAdminThreads from '@images/emptyscreen/illu-actualites.svg';
 import { useNavigate } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import { Dropdown, FormControl, Label } from '@edifice.io/react';
+import { Dropdown, FormControl, Label } from '@open-ent/react';
 import { UIEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { useI18n } from '~/hooks/usei18n';
 import { sortByLabel } from '~/utils';

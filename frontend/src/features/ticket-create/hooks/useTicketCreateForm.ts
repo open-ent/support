@@ -1,5 +1,5 @@
-import { useToast } from '@edifice.io/react';
-import { EditorRef } from '@edifice.io/react/editor';
+import { useToast } from '@open-ent/react';
+import { EditorRef } from '@open-ent/react/editor';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';

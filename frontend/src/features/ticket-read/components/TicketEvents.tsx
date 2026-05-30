@@ -1,6 +1,6 @@
-import { Badge, Flex } from '@edifice.io/react';
+import { Badge, Flex } from '@open-ent/react';
 import DOMPurify from 'dompurify';
-import { IconBulle, IconInfoCircle } from '@edifice.io/react/icons';
+import { IconBulle, IconInfoCircle } from '@open-ent/react/icons';
 import { useI18n } from '~/hooks/usei18n';
 import {
   getTicketStatusText,

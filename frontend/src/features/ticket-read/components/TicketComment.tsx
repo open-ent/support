@@ -1,5 +1,5 @@
-import { Avatar, Flex } from '@edifice.io/react';
-import { Editor } from '@edifice.io/react/editor';
+import { Avatar, Flex } from '@open-ent/react';
+import { Editor } from '@open-ent/react/editor';
 import { TicketComment as TicketCommentType } from '~/models';
 import { getAvatarURL } from '~/utils/getAvatarURL';
 import { FormattedDate } from './FormattedDate';

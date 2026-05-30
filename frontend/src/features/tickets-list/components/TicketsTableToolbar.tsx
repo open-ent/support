@@ -1,4 +1,4 @@
-import { Button, Checkbox, Flex, Table } from '@edifice.io/react';
+import { Button, Checkbox, Flex, Table } from '@open-ent/react';
 import { ReactNode } from 'react';
 import { Ticket } from '~/models';
 

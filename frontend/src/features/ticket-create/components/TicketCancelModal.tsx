@@ -1,4 +1,4 @@
-import { ConfirmModal } from '@edifice.io/react';
+import { ConfirmModal } from '@open-ent/react';
 import { useI18n } from '~/hooks/usei18n';
 
 type TicketCancelModalProps = {

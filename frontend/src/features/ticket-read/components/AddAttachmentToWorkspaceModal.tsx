@@ -1,4 +1,4 @@
-import { Button, Modal, WorkspaceFolders } from '@edifice.io/react';
+import { Button, Modal, WorkspaceFolders } from '@open-ent/react';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useI18n } from '~/hooks/usei18n';

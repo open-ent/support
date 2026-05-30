@@ -1,4 +1,4 @@
-import { ERROR_CODE } from '@edifice.io/client';
+import { ERROR_CODE } from '@open-ent/client';
 import { QueryCache, QueryClient } from '@tanstack/react-query';
 
 export const queryClient = new QueryClient({

@@ -1,4 +1,4 @@
-import { Checkbox, Table } from '@edifice.io/react';
+import { Checkbox, Table } from '@open-ent/react';
 import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { School, Ticket } from '~/models';

@@ -1,6 +1,6 @@
-import { Avatar, Button, Flex, Loading, useToast } from '@edifice.io/react';
-import { Editor, EditorRef } from '@edifice.io/react/editor';
-import { IconUndo } from '@edifice.io/react/icons';
+import { Avatar, Button, Flex, Loading, useToast } from '@open-ent/react';
+import { Editor, EditorRef } from '@open-ent/react/editor';
+import { IconUndo } from '@open-ent/react/icons';
 import { useMutation } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 import { Ticket, TicketAttachment } from '~/models';
