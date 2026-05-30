@@ -5,7 +5,7 @@ import {
   Layout,
   LoadingScreen,
   useEdificeClient,
-} from '@edifice.io/react';
+} from '@open-ent/react';
 
 import { matchPath, Outlet, useMatch } from 'react-router-dom';
 

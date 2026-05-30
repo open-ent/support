@@ -1,4 +1,4 @@
-import { odeServices } from '@edifice.io/client';
+import { odeServices } from '@open-ent/client';
 import {
   School,
   ApiTicket,

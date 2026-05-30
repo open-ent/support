@@ -1,4 +1,4 @@
-import { Flex, LoadingScreen, useEdificeClient } from '@edifice.io/react';
+import { Flex, LoadingScreen, useEdificeClient } from '@open-ent/react';
 import { QueryClient } from '@tanstack/react-query';
 import { TicketRead } from '~/features/ticket-read/TicketRead';
 

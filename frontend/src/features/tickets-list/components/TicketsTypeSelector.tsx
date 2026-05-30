@@ -1,4 +1,4 @@
-import { SegmentedControl } from '@edifice.io/react';
+import { SegmentedControl } from '@open-ent/react';
 import { useCallback } from 'react';
 import { TicketFiltersState, TicketType } from '~/models';
 import { useI18n } from '~/hooks/usei18n';

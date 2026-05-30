@@ -1,4 +1,4 @@
-import { EditorRef } from '@edifice.io/react/editor';
+import { EditorRef } from '@open-ent/react/editor';
 import { RefObject } from 'react';
 import { TicketAttachment } from '~/models';
 import { getWorkspaceDocumentProperties } from '~/services';

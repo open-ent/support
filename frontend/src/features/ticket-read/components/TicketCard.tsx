@@ -2,10 +2,10 @@ import {
   Attachment as AttachmentComponent,
   Flex,
   IconButton,
-} from '@edifice.io/react';
+} from '@open-ent/react';
 import { useMemo, useState } from 'react';
-import { Editor } from '@edifice.io/react/editor';
-import { IconDownload, IconFolderAdd } from '@edifice.io/react/icons';
+import { Editor } from '@open-ent/react/editor';
+import { IconDownload, IconFolderAdd } from '@open-ent/react/icons';
 import {
   ApiAttachment,
   BugTrackerIssue,

@@ -31,10 +31,10 @@
     ]
   },
   "dependencies": {
-    "@edifice.io/bootstrap": "2.5.19",
-    "@edifice.io/client": "2.5.19",
-    "@edifice.io/react": "2.5.19",
-    "@edifice.io/utilities": "2.5.19",
+    "@open-ent/bootstrap": "^2.5.22",
+    "@open-ent/client": "^2.5.22",
+    "@open-ent/react": "^2.5.22",
+    "@open-ent/utilities": "^2.5.22",
     "@react-spring/web": "9.7.5",
     "@tanstack/react-query": "5.90.21",
     "@uidotdev/usehooks": "2.4.1",

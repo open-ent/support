@@ -5,8 +5,8 @@ import {
   Flex,
   SearchBar,
   useDebounce,
-} from '@edifice.io/react';
-import { IconFilter } from '@edifice.io/react/icons';
+} from '@open-ent/react';
+import { IconFilter } from '@open-ent/react/icons';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 const SEARCH_DEBOUNCE_MS = 300;

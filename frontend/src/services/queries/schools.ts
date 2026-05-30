@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useIsAdmlcOrAdmc, useUser } from '@edifice.io/react';
+import { useIsAdmlcOrAdmc, useUser } from '@open-ent/react';
 import { useMemo } from 'react';
 import { School } from '~/models';
 import { getSchools } from '../api';

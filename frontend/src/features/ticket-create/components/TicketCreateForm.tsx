@@ -1,5 +1,5 @@
-import { Flex, FormControl, Input, Label } from '@edifice.io/react';
-import { Editor, EditorRef } from '@edifice.io/react/editor';
+import { Flex, FormControl, Input, Label } from '@open-ent/react';
+import { Editor, EditorRef } from '@open-ent/react/editor';
 import { RefObject, useEffect, useState } from 'react';
 import { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { TicketAttachment } from '~/models';

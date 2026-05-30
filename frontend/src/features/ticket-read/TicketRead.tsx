@@ -4,8 +4,8 @@ import {
   LoadingScreen,
   useBreakpoint,
   useUser,
-} from '@edifice.io/react';
-import { IconArrowLeft } from '@edifice.io/react/icons';
+} from '@open-ent/react';
+import { IconArrowLeft } from '@open-ent/react/icons';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTicketFormOptions, useUserScope } from '~/hooks';
 import { TicketComment, TicketEvent } from '~/models';

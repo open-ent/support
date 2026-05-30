@@ -1,4 +1,4 @@
-import { Tooltip, useDate } from '@edifice.io/react';
+import { Tooltip, useDate } from '@open-ent/react';
 import toUtcString from '~/utils/toUtcString';
 
 export function FormattedDate({ date }: { date: string }) {

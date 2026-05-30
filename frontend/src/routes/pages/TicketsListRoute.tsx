@@ -1,6 +1,6 @@
 import { matchPath } from 'react-router-dom';
 
-import { Flex } from '@edifice.io/react';
+import { Flex } from '@open-ent/react';
 import { TicketsList } from '~/features/tickets-list/TicketsList';
 import { basename } from '..';
 

@@ -1,4 +1,4 @@
-import { useToast } from '@edifice.io/react';
+import { useToast } from '@open-ent/react';
 
 const SUBMIT_DEBOUNCE_MS = 1000;
 import { useMutation, useQueryClient } from '@tanstack/react-query';

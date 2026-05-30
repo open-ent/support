@@ -3,7 +3,7 @@ import {
   LoadingScreen,
   Pagination,
   useIsAdmlcOrAdmc,
-} from '@edifice.io/react';
+} from '@open-ent/react';
 import { EmptyTicketsTable } from './components/EmptyTicketsTable';
 import { TicketsFilters } from './components/TicketsFilters';
 import { TicketsTable } from './components/TicketsTable';

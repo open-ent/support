@@ -1,4 +1,4 @@
-import { IAction, odeServices } from '@edifice.io/client';
+import { IAction, odeServices } from '@open-ent/client';
 import { queryOptions } from '@tanstack/react-query';
 
 /**

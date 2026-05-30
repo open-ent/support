@@ -1,5 +1,5 @@
-import { Button, Flex } from '@edifice.io/react';
-import { IconSave } from '@edifice.io/react/icons';
+import { Button, Flex } from '@open-ent/react';
+import { IconSave } from '@open-ent/react/icons';
 import { useCanEscalate } from '~/hooks/useCanEscalate';
 import { useI18n } from '~/hooks/usei18n';
 

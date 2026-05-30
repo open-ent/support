@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, useEdificeClient } from '@edifice.io/react';
+import { Button, Flex, Heading, useEdificeClient } from '@open-ent/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useRouteError } from 'react-router-dom';
 

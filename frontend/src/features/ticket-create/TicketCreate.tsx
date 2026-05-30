@@ -1,5 +1,5 @@
-import { Button, Flex } from '@edifice.io/react';
-import { IconArrowLeft } from '@edifice.io/react/icons';
+import { Button, Flex } from '@open-ent/react';
+import { IconArrowLeft } from '@open-ent/react/icons';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTicketFormOptions } from '~/hooks';

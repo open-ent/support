@@ -6,8 +6,8 @@ import {
   Label,
   Select,
   useToast,
-} from '@edifice.io/react';
-import { IconCopy, IconExternalLink } from '@edifice.io/react/icons';
+} from '@open-ent/react';
+import { IconCopy, IconExternalLink } from '@open-ent/react/icons';
 import { useMemo } from 'react';
 import {
   Control,

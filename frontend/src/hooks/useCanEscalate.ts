@@ -1,4 +1,4 @@
-import { useHasWorkflow } from '@edifice.io/react';
+import { useHasWorkflow } from '@open-ent/react';
 
 export function useCanEscalate(): boolean {
   const escalateWorkflow = useHasWorkflow(

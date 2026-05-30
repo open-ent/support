@@ -1,9 +1,9 @@
-import { Flex, IconButton, Table } from '@edifice.io/react';
+import { Flex, IconButton, Table } from '@open-ent/react';
 import {
   IconArrowDown,
   IconArrowUp,
   IconListOrder,
-} from '@edifice.io/react/icons';
+} from '@open-ent/react/icons';
 import { SortableTicketField, SortOrder } from '~/models';
 import { useI18n } from '~/hooks/usei18n';
 import { ticketTableColumns } from './TicketTableColumns';

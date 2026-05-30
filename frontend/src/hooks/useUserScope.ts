@@ -1,4 +1,4 @@
-import { useUser } from '@edifice.io/react';
+import { useUser } from '@open-ent/react';
 
 /**
  * Returns the list of school IDs the user is scoped to, or null if the user is ADMC
