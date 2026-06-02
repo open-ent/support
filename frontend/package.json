@@ -31,10 +31,10 @@
     ]
   },
   "dependencies": {
-    "@open-ent/bootstrap": "^2.5.22",
-    "@open-ent/client": "^2.5.22",
-    "@open-ent/react": "^2.5.22",
-    "@open-ent/utilities": "^2.5.22",
+    "@open-ent/bootstrap": "^2.5.26",
+    "@open-ent/client": "^2.5.26",
+    "@open-ent/react": "^2.5.26",
+    "@open-ent/utilities": "^2.5.26",
     "@react-spring/web": "9.7.5",
     "@tanstack/react-query": "5.90.21",
     "@uidotdev/usehooks": "2.4.1",
