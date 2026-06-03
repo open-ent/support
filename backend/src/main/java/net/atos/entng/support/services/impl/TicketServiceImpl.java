@@ -46,7 +46,12 @@ public class TicketServiceImpl implements TicketService {
                         .map(JsonObject.class::cast)
                         .forEach(jUser -> {
                             // traduction profil
-                            String profil = jUser.getJsonArray("n.profiles").getString(0);
+                            // Garde null : un utilisateur sans propriété n.profiles
+                            // (donnee incomplete) renvoyait null -> NPE. On retombe
+                            // alors sur un profil vide plutot que de planter.
+                            final JsonArray profiles = jUser.getJsonArray("n.profiles");
+                            String profil = (profiles != null && !profiles.isEmpty())
+                                    ? profiles.getString(0) : "";
                             profil = I18n.getInstance().translate(profil, i18nConfig.getDomain(), i18nConfig.getLang());
                             // iterator on tickets, to see if the ids match
                             String finalProfil = profil;
