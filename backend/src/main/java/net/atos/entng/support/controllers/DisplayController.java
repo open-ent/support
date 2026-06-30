@@ -50,4 +50,21 @@ public class DisplayController extends BaseController {
         renderView(request, new JsonObject(), "index.html", null);
         eventStore.createAndStoreEvent(SupportEvent.ACCESS.name(), request);
     }
+
+    // Sous-routes du SPA React : on sert la même coquille index.html.
+    // On exige seulement l'authentification (et non le workflow support.view) pour que
+    // le rafraîchissement / l'accès direct fonctionne sans dépendre d'actions nouvellement
+    // enregistrées mais non liées au rôle existant. Le contrôle d'accès réel est porté par
+    // les endpoints d'API. Cf. convention BlogController (routes SPA en ActionType.AUTHENTICATED).
+    @Get(value = "/tickets/new")
+    @SecuredAction(value = "", type = ActionType.AUTHENTICATED)
+    public void newTicket(final HttpServerRequest request) {
+        renderView(request, new JsonObject(), "index.html", null);
+    }
+
+    @Get(value = "/tickets/:ticketId")
+    @SecuredAction(value = "", type = ActionType.AUTHENTICATED)
+    public void ticketDetails(final HttpServerRequest request) {
+        renderView(request, new JsonObject(), "index.html", null);
+    }
 }
