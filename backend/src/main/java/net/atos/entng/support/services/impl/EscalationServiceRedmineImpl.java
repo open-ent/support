@@ -412,6 +412,7 @@ public class EscalationServiceRedmineImpl implements EscalationService {
 							.add(HttpHeaders.CONTENT_LENGTH, String.valueOf(data.length()))
 							.add(HEADER_REDMINE_API_KEY, redmineApiKey)))
 				.flatMap(request -> request.send(data))
+				.onSuccess(handler::handle)
 				.onFailure(t -> log.error("[Support] Error : exception raised by redmine escalation httpClient", t));
 
 	}
@@ -514,6 +515,7 @@ public class EscalationServiceRedmineImpl implements EscalationService {
 										.add(HttpHeaders.CONTENT_LENGTH, String.valueOf(buffer.length()))
 										.add(HEADER_REDMINE_API_KEY, redmineApiKey)))
 						.flatMap(request -> request.send(buffer))
+						.onSuccess(handler::handle)
 						.onFailure(t -> log.error("[Support] Error : exception raised by redmine escalation httpClient", t));
 			}
 		});
@@ -557,6 +559,7 @@ public class EscalationServiceRedmineImpl implements EscalationService {
 								.add(HttpHeaders.CONTENT_LENGTH, String.valueOf(buffer.length()))
 								.add(HEADER_REDMINE_API_KEY, redmineApiKey)))
 				.flatMap(request -> request.send(buffer))
+				.onSuccess(handler::handle)
 				.onFailure(t -> log.error("[Support] Error : exception raised by redmine escalation httpClient", t));
 	}
 

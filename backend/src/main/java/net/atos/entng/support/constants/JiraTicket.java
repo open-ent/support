@@ -68,6 +68,9 @@ public class JiraTicket {
     public static final String LOCALE = "locale";
     public static final String DOMAIN = "domain";
     public static final String THRESHOLD_DIRECT_EXPORT_TICKETS= "threshold-direct-export-tickets";
+    // Seuil par défaut au-delà duquel l'export passe par le worker (dépôt asynchrone) plutôt que
+    // par le téléchargement direct. Aligné sur la valeur par défaut du template de déploiement.
+    public static final int THRESHOLD_DIRECT_EXPORT_TICKETS_DEFAULT = 1000;
     public static final String THRESHOLD = "threshold";
 
     public static final String TYPE = "type";

@@ -23,7 +23,32 @@ public class ConfigController extends ControllerHelper {
     @SecuredAction(value = "", type = ActionType.RESOURCE)
     @ResourceFilter(AdminFilter.class)
     public void getConfigMaxTickets(final HttpServerRequest request) {
-        renderJson(request, new JsonObject().put(JiraTicket.THRESHOLD, config.getString(JiraTicket.THRESHOLD_DIRECT_EXPORT_TICKETS)));
+        renderJson(request, new JsonObject().put(JiraTicket.THRESHOLD, getThresholdDirectExportTickets()));
+    }
+
+    /**
+     * Renvoie le seuil de bascule export direct / worker sous forme d'entier.
+     * Tolère une valeur de configuration absente, vide, numérique ou textuelle :
+     * en cas d'absence ou de valeur invalide, on retombe sur la valeur par défaut (1000).
+     * Sans ce fallback, une valeur null/vide était interprétée comme 0 côté front,
+     * envoyant tout export (même un seul ticket) vers le worker asynchrone.
+     */
+    private int getThresholdDirectExportTickets() {
+        Object raw = config.getValue(JiraTicket.THRESHOLD_DIRECT_EXPORT_TICKETS);
+        if (raw instanceof Number) {
+            return ((Number) raw).intValue();
+        }
+        if (raw instanceof String) {
+            try {
+                String value = ((String) raw).trim();
+                if (!value.isEmpty()) {
+                    return Integer.parseInt(value);
+                }
+            } catch (NumberFormatException ignored) {
+                // valeur non numérique : on retombe sur le défaut
+            }
+        }
+        return JiraTicket.THRESHOLD_DIRECT_EXPORT_TICKETS_DEFAULT;
     }
 
     @Get("/config/numberTicketsPerPage")
