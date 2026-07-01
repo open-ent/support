@@ -37,6 +37,9 @@ rev-manifest.json
 **/dist
 **/.DS_Store
 **/view/*.html
+# Exception : la coquille SPA React doit être versionnée + packagée dans le jar
+# (sinon /support rend une page blanche si le jar est bâti sans rejouer le build front).
+!**/view/index.html
 src/main/resources/public/js/behaviours.js
 /package-lock.json
 .env
