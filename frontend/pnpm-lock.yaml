@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@open-ent/bootstrap':
-        specifier: ^2.5.29
-        version: 2.5.29
+        specifier: 2.5.30-patched
+        version: 2.5.30-patched
       '@open-ent/client':
         specifier: ^2.5.29
         version: 2.5.29
@@ -807,6 +807,9 @@ packages:
 
   '@open-ent/bootstrap@2.5.29':
     resolution: {integrity: sha512-JJ89u/5frdThtEVTg4CHBsww1/Febr1ndplYxOqArDEjy15BWbJwOs21G9lLOkkPG6J0k2FLhIt8YyduUK1lcQ==, tarball: https://npm.pkg.github.com/download/@open-ent/bootstrap/2.5.29/1bfaefa5d02dbb6e54d55b1764c8ef986624885e}
+
+  '@open-ent/bootstrap@2.5.30-patched':
+    resolution: {integrity: sha512-sPuWEZ3bH+MUkZfTXwdVKL2r7ebojxUy3T4ZQW7MWOHf8xC89WK70HD6mtdW8MKil5Rekuj0uLalwhxvV0F5hA==, tarball: https://npm.pkg.github.com/download/@open-ent/bootstrap/2.5.30-patched/1f4102ea8a02c2c4fff6e0b3b65ddeca725f8331}
 
   '@open-ent/client@2.5.29':
     resolution: {integrity: sha512-L1qvNgo2Tb2gBZlbQftMe3v4PPGsJ7niOS4jTYlIKZWecTdiZc2iXj8wargZTT8Qi+MIxgQ48MFbD5DEVzUqHw==, tarball: https://npm.pkg.github.com/download/@open-ent/client/2.5.29/d6655d0a255ec3315d3055bf7e64dd3f05dff53c}
@@ -4686,6 +4689,11 @@ snapshots:
   '@open-draft/until@2.1.0': {}
 
   '@open-ent/bootstrap@2.5.29':
+    dependencies:
+      '@popperjs/core': 2.11.8
+      bootstrap: 5.3.8(@popperjs/core@2.11.8)
+
+  '@open-ent/bootstrap@2.5.30-patched':
     dependencies:
       '@popperjs/core': 2.11.8
       bootstrap: 5.3.8(@popperjs/core@2.11.8)
