@@ -50,7 +50,12 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.OPENENT_PACKAGES_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           TIPTAP_PRO_TOKEN: ${{ secrets.TIPTAP_PRO_TOKEN }}
-        run: pnpm install --no-frozen-lockfile
+        run: |
+          # Les @open-ent/* sont publiés sur un tag MOBILE (2.5.30-patched) : le lock
+          # fige une URL de tarball contenant le SHA du blob d'alors, que GitHub
+          # Packages rejette en 409 après republication. On re-résout ces paquets.
+          node scripts/refresh-open-ent-lock.mjs
+          pnpm install --no-frozen-lockfile
 
       - name: Build frontend
         working-directory: frontend
