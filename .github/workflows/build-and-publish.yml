@@ -55,7 +55,10 @@ jobs:
           # fige une URL de tarball contenant le SHA du blob d'alors, que GitHub
           # Packages rejette en 409 après republication. On re-résout ces paquets.
           node scripts/refresh-open-ent-lock.mjs
-          pnpm install --no-frozen-lockfile
+          # Lockfile suivi : l'install doit être reproductible. Un écart entre
+          # package.json et pnpm-lock.yaml doit casser le build, pas être résolu en
+          # silence — c'est ainsi qu'un @open-ent/react périmé s'est retrouvé livré.
+          pnpm install --frozen-lockfile
 
       - name: Build frontend
         working-directory: frontend
