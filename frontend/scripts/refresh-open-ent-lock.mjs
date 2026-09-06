@@ -1,4 +1,9 @@
-// Purge les résolutions @open-ent/* de pnpm-lock.yaml avant l'install en CI.
+// Purge les résolutions @open-ent/* de pnpm-lock.yaml.
+//
+// ATTENTION : ce script CASSE une install `--frozen-lockfile` (pnpm refuse de
+// re-résoudre : ERR_PNPM_LOCKFILE_MISSING_DEPENDENCY). Il n'est appelé qu'en
+// RATTRAPAGE par le workflow, quand l'install gelée a échoué sur un 409, et il
+// doit être suivi d'un `pnpm install --no-frozen-lockfile`.
 //
 // POURQUOI : les paquets @open-ent/* sont publiés sur un tag MOBILE (ex.
 // 2.5.30-patched). Le fork openent-frontend-framework republie la MÊME version

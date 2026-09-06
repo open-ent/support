@@ -51,14 +51,28 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           TIPTAP_PRO_TOKEN: ${{ secrets.TIPTAP_PRO_TOKEN }}
         run: |
-          # Les @open-ent/* sont publiés sur un tag MOBILE (2.5.30-patched) : le lock
-          # fige une URL de tarball contenant le SHA du blob d'alors, que GitHub
-          # Packages rejette en 409 après republication. On re-résout ces paquets.
-          node scripts/refresh-open-ent-lock.mjs
           # Lockfile suivi : l'install doit être reproductible. Un écart entre
           # package.json et pnpm-lock.yaml doit casser le build, pas être résolu en
           # silence — c'est ainsi qu'un @open-ent/react périmé s'est retrouvé livré.
-          pnpm install --frozen-lockfile
+          #
+          # SEULE exception tolérée : les @open-ent/* sont publiés sur un tag MOBILE
+          # (2.5.30-patched) et le fork republie la MÊME version (`force: true`). Le
+          # lock fige alors une URL de tarball dont le SHA de blob n'existe plus, et
+          # GitHub Packages répond 409. Dans CE cas seulement, on re-résout les
+          # @open-ent/* puis on rejoue l'install. Toute autre erreur reste fatale :
+          # purger le lock à l'aveugle le casserait (no entry for '@open-ent/...').
+          set -o pipefail
+          if pnpm install --frozen-lockfile 2>&1 | tee /tmp/pnpm-install.log; then
+            exit 0
+          fi
+          if ! grep -qE 'ERR_PNPM_FETCH_409|ERR_PNPM_TARBALL_INTEGRITY|EINTEGRITY' /tmp/pnpm-install.log \
+             || ! grep -q '@open-ent/' /tmp/pnpm-install.log; then
+            echo "::error::Install échouée pour une autre raison qu'un tarball @open-ent republié."
+            exit 1
+          fi
+          echo "::warning::Tarball @open-ent périmé (version republiée) : re-résolution des @open-ent/* puis nouvelle install."
+          node scripts/refresh-open-ent-lock.mjs
+          pnpm install --no-frozen-lockfile
 
       - name: Build frontend
         working-directory: frontend
