@@ -152,7 +152,9 @@ jobs:
 
       - name: Build fat JAR
         working-directory: backend
-        run: mvn clean package -DskipTests -B -DbuildNumber=${GITHUB_SHA::8} -DscmBranch=${GITHUB_REF_NAME}
+        # -Dmaven.test.skip=true (pas -DskipTests) : évite la compilation des tests, qui crashe
+        # sous JDK 21 via maven-scala-plugin:2.15.2 hérité d'app-parent (testCompile scala).
+        run: mvn clean package -Dmaven.test.skip=true -B -DbuildNumber=${GITHUB_SHA::8} -DscmBranch=${GITHUB_REF_NAME}
 
       - name: Run tests
         if: github.event_name == 'pull_request'
