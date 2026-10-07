@@ -20,6 +20,7 @@
 package net.atos.entng.support.controllers;
 
 import fr.wseduc.rs.Get;
+import fr.wseduc.security.ActionType;
 import fr.wseduc.security.SecuredAction;
 import fr.wseduc.webutils.http.BaseController;
 import io.vertx.core.Vertx;

@@ -10,7 +10,7 @@ vi.mock('~/hooks/usei18n', () => ({
   useI18n: () => ({ t: (key: string) => key }),
 }));
 
-vi.mock('@edifice.io/react/editor', () => ({
+vi.mock('@open-ent/react/editor', () => ({
   Editor: () => <div data-testid="editor" />,
 }));
 vi.mock('~/features/ticket-create/components/TicketAttachment', () => ({
