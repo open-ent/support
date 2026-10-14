@@ -21,6 +21,8 @@ type TicketCreateFormProps = {
   setValue: UseFormSetValue<TicketCreateForm>;
   errors: FieldErrors<TicketCreateForm>;
   categories: SelectOption[];
+  /** Catégorie déjà choisie à l'ouverture (lien de signalement des CGU). */
+  initialCategory?: string;
   schoolOptions: SelectOption[];
   editorRef: RefObject<EditorRef> | undefined;
   onAttachmentsChange: (attachments: TicketAttachment[]) => void;
@@ -31,6 +33,7 @@ export function TicketCreateForm({
   setValue,
   errors,
   categories,
+  initialCategory,
   schoolOptions,
   editorRef,
   onAttachmentsChange,
@@ -39,6 +42,12 @@ export function TicketCreateForm({
   const [attachments, setAttachments] = useState<TicketAttachment[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSchool, setSelectedSchool] = useState('');
+
+  useEffect(() => {
+    if (!initialCategory) return;
+    setSelectedCategory(initialCategory);
+    setValue('category', initialCategory, { shouldValidate: true });
+  }, [initialCategory, setValue]);
 
   useEffect(() => {
     if (schoolOptions.length === 1) {

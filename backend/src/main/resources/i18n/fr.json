@@ -209,5 +209,6 @@
   "support.workspace.copy.success": "Pièce jointe copiée dans votre espace documentaire.",
   "timelinegenerator": "Frise chronologique",
   "wiki": "Cours et Wiki",
-  "workspaceworkspace": "Espace documentaire"
+  "workspaceworkspace": "Espace documentaire",
+  "support.category.report": "Signaler un contenu illicite"
 }

@@ -122,6 +122,14 @@ public class TicketController extends ControllerHelper {
         super.init(vertx, config, rm, securedActions);
     }
 
+    /** Signalement de contenu illicite (lien des CGU) : catégorie hors applications. */
+    private static final String REPORT_CATEGORY = "support.category.report";
+
+    /** Clé i18n du libellé d'une catégorie qui ne correspond à aucune application de l'utilisateur. */
+    private static String displayNameOutsideApps(final String category) {
+        return REPORT_CATEGORY.equals(category) ? REPORT_CATEGORY : "other";
+    }
+
     @Post("/ticket")
     @ApiDoc("Create a ticket")
     @SecuredAction("support.ticket.create")
@@ -143,7 +151,7 @@ public class TicketController extends ControllerHelper {
                                 .filter(app -> app.getAddress().equals(ticket.getString("category")))
                                 .map(UserInfos.Application::getDisplayName)
                                 .findFirst()
-                                .orElse("other");
+                                .orElse(displayNameOutsideApps(ticket.getString("category")));
 
                             String categoryLabel = moduleI18n.getString(displayName, null);
                             if (categoryLabel == null) categoryLabel = portalI18n.getString(displayName, null);
@@ -408,7 +416,8 @@ public class TicketController extends ControllerHelper {
 
                                     String displayName = user.getApps().stream()
                                             .filter(app -> app.getAddress().equals(ticket.getString("category")))
-                                            .map(UserInfos.Application::getDisplayName).findFirst().orElse("other");
+                                            .map(UserInfos.Application::getDisplayName).findFirst()
+                                            .orElse(displayNameOutsideApps(ticket.getString("category")));
 
                                     String categoryLabel = moduleI18n.getString(displayName, null);
                                     if (categoryLabel == null) categoryLabel = portalI18n.getString(displayName, null);

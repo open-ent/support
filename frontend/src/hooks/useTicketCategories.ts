@@ -1,6 +1,7 @@
 import { useEdificeClient } from '@open-ent/react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { REPORT_CATEGORY } from '~/models';
 
 export type TicketCategory = {
   label: string;
@@ -25,5 +26,12 @@ export function useTicketCategories(): TicketCategory[] {
       .sort((a, b) => a.label.localeCompare(b.label));
   }, [applications, t]);
 
-  return categories;
+  // Le signalement de contenu illicite ne dépend d'aucune application : toujours proposé, en tête.
+  return useMemo(
+    () => [
+      { label: t(REPORT_CATEGORY), value: REPORT_CATEGORY },
+      ...categories,
+    ],
+    [categories, t],
+  );
 }

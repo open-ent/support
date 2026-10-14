@@ -256,5 +256,6 @@
   "support.ticket.filter.allschool": "Tous les établissements",
   "support.ticket.filter.allcategories": "Sélectionnez la catégorie concernée",
   "support.title": "Support",
-  "support.toast.export.worker": "Le fichier demandé est trop lourd pour être téléchargé directement dans le navigateur. Il est en cours de création dans l'espace documentaire. Vous recevrez une notification dans le fil d'actualité lorsqu'il sera disponible."
+  "support.toast.export.worker": "Le fichier demandé est trop lourd pour être téléchargé directement dans le navigateur. Il est en cours de création dans l'espace documentaire. Vous recevrez une notification dans le fil d'actualité lorsqu'il sera disponible.",
+  "support.category.report": "Report unlawful content"
 }

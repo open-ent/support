@@ -267,3 +267,12 @@ export const ESCALATION_STATUS: Record<string, TicketEscalationStatusCode> = {
   SUCCESSFUL: 3,
   FAILED: 4,
 };
+
+/**
+ * Catégorie des signalements de contenu illicite. Ce n'est pas une application : le backend
+ * la reconnaît par cette valeur et lui donne le libellé i18n du même nom. Le lien
+ * /support/tickets/new?motif=signalement (cité dans les CGU) ouvre le formulaire avec cette
+ * catégorie déjà choisie.
+ */
+export const REPORT_CATEGORY = 'support.category.report';
+export const REPORT_URL_MOTIF = 'signalement';
