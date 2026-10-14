@@ -1,7 +1,8 @@
+import { dateLocale } from '../locale';
 import toUtcString from './toUtcString';
 
 export function formatDate(date: string): string {
-  return new Date(toUtcString(date)).toLocaleString('fr-FR', {
+  return new Date(toUtcString(date)).toLocaleString(dateLocale(), {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',

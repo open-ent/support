@@ -10,6 +10,7 @@ import {
 import { matchPath, Outlet, useMatch } from 'react-router-dom';
 
 import { AppActionHeader } from '~/features/app/Action/AppActionHeader';
+import { setLanguage } from '~/locale';
 import { basename } from '..';
 
 /** Check old format URL and redirect if needed */
@@ -33,7 +34,13 @@ export const loader = async () => {
 };
 
 export const Component = () => {
-  const { init, currentApp } = useEdificeClient();
+  const { init, currentApp, currentLanguage } = useEdificeClient();
+
+  // La locale de formatage des dates suit la langue de la session (cf. locale.ts). Elle est
+  // posée pendant le rendu, et non dans un effet : les écrans sont montés sous ce composant
+  // et formateraient leurs premières dates en français avant que l'effet ne s'exécute.
+  setLanguage(currentLanguage);
+
   const isTicketDetails = useMatch('tickets/:ticketId');
 
   if (!init || !currentApp) return <LoadingScreen position={false} />;
