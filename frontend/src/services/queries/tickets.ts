@@ -58,7 +58,7 @@ export const useTickets = (
   sortBy: SortableTicketField = 'modified',
   order: SortOrder = 'DESC',
 ) => {
-  const { data, isPending } = useQuery({
+  const { data, isPending, isError } = useQuery({
     queryKey: ticketsQueryKeys.list(
       page,
       status,
@@ -71,7 +71,7 @@ export const useTickets = (
     queryFn: () =>
       getTickets(page, status, type, schools, search, sortBy, order),
   });
-  return { tickets: (data as Ticket[]) ?? [], isPending };
+  return { tickets: (data as Ticket[]) ?? [], isPending, isError };
 };
 
 export const useTicket = (ticketId: string | undefined) => {

@@ -37,6 +37,7 @@
   "support.category.other": "Autre",
   "support.error.comment.added.to.escalated.ticket.but.synchronization.failed": "Erreur : le commentaire a été ajouté à la demande transmise, mais l'ENT n'a pas pu être synchronisé",
   "support.error.comment.has.not.been.added.to.escalated.ticket": "Erreur : le commentaire n'a pas pu être ajoutée à la demande transmise",
+  "support.load.error": "Impossible de charger les demandes. Réessayez dans quelques instants.",
   "support.error.escalation.conflict": "Erreur : transmission impossible. Rafraîchissez la page et relancez la transmission",
   "support.error.escalation.incomplete": "Erreur : la transmission a été réalisée partiellement. Les commentaires n'ont pas pu être transmis",
   "support.error.sort.tickets.by.profile.name": "Erreur : les tickets n'ont pas pu être triés par profiles",

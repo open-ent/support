@@ -16,7 +16,7 @@ export function useTicketListState() {
   const [filters, setFilters] = useState<TicketFiltersState>(DEFAULT_FILTERS);
   const [page, setPage] = useState(1);
 
-  const { tickets, isPending: ticketsPending } = useTickets(
+  const { tickets, isPending: ticketsPending, isError } = useTickets(
     page,
     filters.status,
     filters.type,
@@ -31,8 +31,10 @@ export function useTicketListState() {
 
   const totalResults = tickets[0]?.total_results ?? 0;
   const isPending = ticketsPending || schoolsPending || ticketsPerPagePending;
+  // En cas d'échec de lecture on n'affiche pas le faux « aucune demande »
   const isTableEmpty =
-    !isPending && (!tickets || tickets.length === 0 || schools.length === 0);
+    !isPending &&
+    !isError && (!tickets || tickets.length === 0 || schools.length === 0);
 
   const handleSort = useCallback((field: SortableTicketField) => {
     setFilters((prev) => ({
@@ -57,6 +59,7 @@ export function useTicketListState() {
     ticketsPerPage,
     totalResults,
     isPending,
+    isError,
     isTableEmpty,
     handleSort,
     handleFiltersChange,

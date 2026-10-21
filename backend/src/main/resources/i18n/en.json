@@ -37,6 +37,7 @@
   "support.category.other": "Other",
   "support.error.comment.added.to.escalated.ticket.but.synchronization.failed": "Error: the comment was added to the escalated request, but the ENT could not be synchronised",
   "support.error.comment.has.not.been.added.to.escalated.ticket": "Error: the comment could not be added to the escalated request",
+  "support.load.error": "Unable to load the tickets. Please try again in a moment.",
   "support.error.escalation.conflict": "Error: escalation not possible. Refresh the page and retry the escalation",
   "support.error.escalation.incomplete": "Error: the escalation was partially completed. Comments could not be escalated",
   "support.error.sort.tickets.by.profile.name": "Error: tickets could not be sorted by profile",
