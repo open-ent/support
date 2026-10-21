@@ -1,4 +1,4 @@
-import { odeServices } from '@open-ent/client';
+import { odeServices } from './strictHttp';
 import {
   School,
   ApiTicket,
