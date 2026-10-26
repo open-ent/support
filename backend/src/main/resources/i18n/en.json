@@ -258,5 +258,14 @@
   "support.ticket.filter.allcategories": "Sélectionnez la catégorie concernée",
   "support.title": "Support",
   "support.toast.export.worker": "Le fichier demandé est trop lourd pour être téléchargé directement dans le navigateur. Il est en cours de création dans l'espace documentaire. Vous recevrez une notification dans le fil d'actualité lorsqu'il sera disponible.",
-  "support.category.report": "Report unlawful content"
+  "support.category.report": "Report unlawful content",
+  "support.view.label": "Display mode",
+  "support.view.list": "List view",
+  "support.view.kanban": "Kanban view",
+  "support.ticket.table.status.change": "Change status",
+  "support.ticket.table.status.change.success": "The status of the requests has been changed",
+  "support.ticket.table.status.change.error": "An error occurred while changing the status",
+  "support.kanban.more": "Show more",
+  "support.kanban.move": "Move to",
+  "support.kanban.unselect": "Unselect"
 }

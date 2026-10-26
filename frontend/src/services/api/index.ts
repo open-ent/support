@@ -128,6 +128,15 @@ export async function escalateTickets(ticketIds: string[]): Promise<any[]> {
   );
 }
 
+export async function updateTicketsStatus(
+  ticketIds: number[],
+  status: TicketApiCode,
+): Promise<void> {
+  return odeServices
+    .http()
+    .post(`${tickets_api_base_url}/ticketstatus/${status}`, { ids: ticketIds });
+}
+
 export async function refreshTicket(ticketId: string): Promise<void> {
   return odeServices
     .http()

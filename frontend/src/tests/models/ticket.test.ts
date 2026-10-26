@@ -1,10 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import {
   ESCALATION_STATUS,
+  getAllowedStatuses,
   getStatusLabels,
+  KANBAN_STATUS_ORDER,
   getTicketStatusText,
   mapApiProfileToProfile,
   NEW_OR_OPEN_STATUSES,
+  RESOLVED_STATUS,
   TICKET_STATUS_BY_CODE,
   ticketStatusToCode,
   type TicketApiCode,
@@ -105,5 +108,45 @@ describe('ESCALATION_STATUS', () => {
     expect(ESCALATION_STATUS.IN_PROGRESS).toBe(2);
     expect(ESCALATION_STATUS.SUCCESSFUL).toBe(3);
     expect(ESCALATION_STATUS.FAILED).toBe(4);
+  });
+});
+
+describe('getAllowedStatuses', () => {
+  const inScope = { school_id: 'school-a' };
+  const outOfScope = { school_id: 'school-b' };
+
+  it('returns nothing when no ticket is selected', () => {
+    expect(getAllowedStatuses([], null)).toEqual([]);
+  });
+
+  it('allows every status, in kanban order, for an unrestricted admin', () => {
+    expect(getAllowedStatuses([inScope, outOfScope], null)).toEqual(
+      KANBAN_STATUS_ORDER,
+    );
+  });
+
+  it('allows every status when all tickets are in the admin scope', () => {
+    expect(getAllowedStatuses([inScope], ['school-a'])).toEqual(
+      KANBAN_STATUS_ORDER,
+    );
+  });
+
+  it('only allows "resolved" when a ticket is out of scope', () => {
+    expect(getAllowedStatuses([inScope, outOfScope], ['school-a'])).toEqual([
+      RESOLVED_STATUS,
+    ]);
+  });
+
+  it('only allows "resolved" for a user without admin scope', () => {
+    expect(getAllowedStatuses([inScope], [])).toEqual([3]);
+  });
+});
+
+describe('KANBAN_STATUS_ORDER', () => {
+  it('lists every status once, following the ticket lifecycle', () => {
+    expect(KANBAN_STATUS_ORDER).toEqual([1, 2, 5, 3, 4]);
+    expect([...KANBAN_STATUS_ORDER].sort()).toEqual(
+      Object.keys(TICKET_STATUS_BY_CODE).map(Number),
+    );
   });
 });

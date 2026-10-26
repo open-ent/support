@@ -14,7 +14,10 @@ import {
   NEW_OR_OPEN_STATUSES,
   School,
   Ticket,
+  getAllowedStatuses,
 } from '~/models';
+import { StatusChangeMenu } from '~/components/StatusChangeMenu';
+import { useChangeTicketsStatus } from '~/hooks/useChangeTicketsStatus';
 import { escalateTickets, exportTickets } from '~/services/api';
 import { ticketsQueryKeys } from '~/services/queries/tickets';
 import { useCanEscalate } from '~/hooks/useCanEscalate';
@@ -47,6 +50,8 @@ function TicketsTable({
   const queryClient = useQueryClient();
   const canMultiSelect = isAdmlcOrAdmc || escalateWorkflow;
   const userScope = useUserScope();
+  const { changeStatus, isPending: isStatusChangePending } =
+    useChangeTicketsStatus();
 
   const getTicketId = useCallback((ticket: Ticket) => ticket.id, []);
   const {
@@ -72,6 +77,21 @@ function TicketsTable({
           navigate(`/tickets/${selectedTickets[0].id}`);
         },
         isVisible: selectedTickets.length === 1,
+      },
+      {
+        id: 'status',
+        element: (
+          <StatusChangeMenu
+            label={t('support.ticket.table.status.change')}
+            statuses={getAllowedStatuses(selectedTickets, userScope)}
+            disabled={isStatusChangePending}
+            onSelect={async (status) => {
+              await changeStatus(selectedTickets, status);
+              clearSelection();
+            }}
+          />
+        ),
+        isVisible: selectedTickets.length > 0,
       },
       {
         id: 'export',
@@ -125,6 +145,8 @@ function TicketsTable({
       clearSelection,
       t,
       userScope,
+      changeStatus,
+      isStatusChangePending,
     ],
   );
 

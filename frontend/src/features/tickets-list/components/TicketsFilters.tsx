@@ -25,6 +25,8 @@ type TicketsFiltersProps = {
   filters: TicketFiltersState;
   onChange: (filters: TicketFiltersState) => void;
   schools: School[];
+  // The kanban columns already split tickets by status
+  hideStatusFilter?: boolean;
 };
 
 type TicketsSchoolFilterProps = {
@@ -257,6 +259,7 @@ export function TicketsFilters({
   filters,
   schools,
   onChange,
+  hideStatusFilter = false,
 }: TicketsFiltersProps) {
   const { t } = useI18n();
   const [search, setSearch] = useState(filters.search);
@@ -299,7 +302,9 @@ export function TicketsFilters({
             filters={filters}
           />
         )}
-        <TicketsStatusFilter onChange={onChange} filters={filters} />
+        {!hideStatusFilter && (
+          <TicketsStatusFilter onChange={onChange} filters={filters} />
+        )}
       </Flex>
     </Flex>
   );

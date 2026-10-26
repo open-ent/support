@@ -12,11 +12,40 @@ const DEFAULT_FILTERS: TicketFiltersState = {
   order: 'DESC',
 };
 
+export type TicketsView = 'list' | 'kanban';
+
+const VIEW_STORAGE_KEY = 'support.view';
+
+// Storage may be unavailable (private browsing, blocked site data)
+function readStoredView(): TicketsView {
+  try {
+    return localStorage.getItem(VIEW_STORAGE_KEY) === 'kanban'
+      ? 'kanban'
+      : 'list';
+  } catch {
+    return 'list';
+  }
+}
+
 export function useTicketListState() {
   const [filters, setFilters] = useState<TicketFiltersState>(DEFAULT_FILTERS);
+  const [view, setViewState] = useState<TicketsView>(readStoredView);
+
+  const setView = useCallback((newView: TicketsView) => {
+    setViewState(newView);
+    try {
+      localStorage.setItem(VIEW_STORAGE_KEY, newView);
+    } catch {
+      // The choice simply won't be remembered
+    }
+  }, []);
   const [page, setPage] = useState(1);
 
-  const { tickets, isPending: ticketsPending, isError } = useTickets(
+  const {
+    tickets,
+    isPending: ticketsPending,
+    isError,
+  } = useTickets(
     page,
     filters.status,
     filters.type,
@@ -34,7 +63,8 @@ export function useTicketListState() {
   // En cas d'échec de lecture on n'affiche pas le faux « aucune demande »
   const isTableEmpty =
     !isPending &&
-    !isError && (!tickets || tickets.length === 0 || schools.length === 0);
+    !isError &&
+    (!tickets || tickets.length === 0 || schools.length === 0);
 
   const handleSort = useCallback((field: SortableTicketField) => {
     setFilters((prev) => ({
@@ -51,6 +81,8 @@ export function useTicketListState() {
   }, []);
 
   return {
+    view,
+    setView,
     filters,
     page,
     setPage,

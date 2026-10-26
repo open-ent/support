@@ -1,14 +1,15 @@
 import { Button, Checkbox, Flex, Table } from '@open-ent/react';
-import { ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 import { Ticket } from '~/models';
 
 export type ToolbarAction = {
   id: string;
-  label: string;
-  icon: ReactNode;
-  onClick: () => void;
   isVisible?: boolean;
-};
+} & (
+  | { label: string; icon: ReactNode; onClick: () => void }
+  // Custom control, e.g. a dropdown menu
+  | { element: ReactNode }
+);
 
 export type TicketsTableToolbarProps = {
   selectedTickets: Ticket[];
@@ -38,17 +39,21 @@ export function TicketsTableToolbar({
             onChange={() => handleSelectAll()}
           />
           <span>({selectedCount})</span>
-          {visibleActions.map((action) => (
-            <Button
-              key={action.id}
-              color="tertiary"
-              variant="ghost"
-              onClick={action.onClick}
-            >
-              {action.icon}
-              {action.label}
-            </Button>
-          ))}
+          {visibleActions.map((action) =>
+            'element' in action ? (
+              <Fragment key={action.id}>{action.element}</Fragment>
+            ) : (
+              <Button
+                key={action.id}
+                color="tertiary"
+                variant="ghost"
+                onClick={action.onClick}
+              >
+                {action.icon}
+                {action.label}
+              </Button>
+            ),
+          )}
         </Flex>
       </td>
     </Table.Tr>

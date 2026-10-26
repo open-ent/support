@@ -211,5 +211,14 @@
   "timelinegenerator": "Frise chronologique",
   "wiki": "Cours et Wiki",
   "workspaceworkspace": "Espace documentaire",
-  "support.category.report": "Signaler un contenu illicite"
+  "support.category.report": "Signaler un contenu illicite",
+  "support.view.label": "Mode d'affichage",
+  "support.view.list": "Vue liste",
+  "support.view.kanban": "Vue kanban",
+  "support.ticket.table.status.change": "Changer le statut",
+  "support.ticket.table.status.change.success": "Le statut des demandes a été modifié",
+  "support.ticket.table.status.change.error": "Une erreur s'est produite lors du changement de statut",
+  "support.kanban.more": "Voir plus",
+  "support.kanban.move": "Déplacer vers",
+  "support.kanban.unselect": "Désélectionner"
 }

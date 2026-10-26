@@ -276,3 +276,26 @@ export const ESCALATION_STATUS: Record<string, TicketEscalationStatusCode> = {
  */
 export const REPORT_CATEGORY = 'support.category.report';
 export const REPORT_URL_MOTIF = 'signalement';
+
+/**
+ * Ticket statuses in lifecycle order, used to lay out the kanban columns.
+ */
+export const KANBAN_STATUS_ORDER: TicketApiCode[] = [1, 2, 5, 3, 4];
+
+export const RESOLVED_STATUS: TicketApiCode = 3;
+
+/**
+ * Statuses a user can apply to a set of tickets.
+ * An admin whose scope covers every ticket's school can apply any status,
+ * otherwise (ticket owner) only "resolved" is allowed.
+ * `scope === null` means unrestricted access (ADMC).
+ */
+export function getAllowedStatuses(
+  tickets: Pick<Ticket, 'school_id'>[],
+  scope: string[] | null,
+): TicketApiCode[] {
+  if (tickets.length === 0) return [];
+  const canEditAllStatuses =
+    scope === null || tickets.every((t) => scope.includes(t.school_id));
+  return canEditAllStatuses ? KANBAN_STATUS_ORDER : [RESOLVED_STATUS];
+}
