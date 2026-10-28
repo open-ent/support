@@ -25,10 +25,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": [
-      "pnpm run format",
-      "pnpm run lint"
-    ]
+    "**/*.{ts,tsx}": ["prettier --write", "eslint --fix --no-warn-ignored"]
   },
   "dependencies": {
     "@dnd-kit/core": "6.3.1",
