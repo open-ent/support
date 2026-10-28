@@ -442,9 +442,9 @@ public class EscalationServiceRedmineImpl implements EscalationService {
 		// get school name and add it to description
 		final String schoolId = ticket.getString("school_id");
 		final StatementsBuilder s = new StatementsBuilder();
-		s.add("MATCH (s:Structure {id : {schoolId}}) return s.name as name ",
+		s.add("MATCH (s:Structure {id : $schoolId}) return s.name as name ",
 				new JsonObject().put("schoolId", schoolId));
-		s.add("MATCH (a:Application {address : {category}}) return a.displayName as name",
+		s.add("MATCH (a:Application {address : $category}) return a.displayName as name",
 				new JsonObject().put("category", ticket.getString("category")));
 		Neo4j.getInstance().executeTransaction(s.build(), null, true, new Handler<Message<JsonObject>>() {
 			@Override

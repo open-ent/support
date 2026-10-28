@@ -320,7 +320,7 @@ public class ZendeskIssue extends Issue implements JSONAble
         if(escalationConf.ticket_id_field_id != null)
             issue.custom_fields.add(new CustomField<Integer>(escalationConf.ticket_id_field_id, ticket.id.get()));
 
-        String query = "MATCH (s:Structure {id: {schoolId}}), (u:User {id: {userId}}) RETURN s.name AS schoolName, s.UAI AS schoolUAI, u.mobile AS userMobile";
+        String query = "MATCH (s:Structure {id: $schoolId}), (u:User {id: $userId}) RETURN s.name AS schoolName, s.UAI AS schoolUAI, u.mobile AS userMobile";
         JsonObject params = new JsonObject().put("schoolId", ticket.schoolId != null ? ticket.schoolId : "").put("userId", ticket.ownerId != null ? ticket.ownerId : "");
 
         Neo4j.getInstance().execute(query, params, new Handler<Message<JsonObject>>()

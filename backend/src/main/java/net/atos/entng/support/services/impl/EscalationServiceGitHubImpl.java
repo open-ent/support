@@ -148,7 +148,7 @@ public class EscalationServiceGitHubImpl implements EscalationService {
             return Future.succeededFuture("—");
         }
         Promise<String> promise = Promise.promise();
-        String query = "MATCH (s:Structure {id: {id}}) RETURN s.name AS name, s.UAI AS uai";
+        String query = "MATCH (s:Structure {id: $id}) RETURN s.name AS name, s.UAI AS uai";
         Neo4j.getInstance().execute(query, new JsonObject().put("id", schoolId),
                 msg -> {
                     JsonArray result = msg.body().getJsonArray("result");

@@ -61,7 +61,7 @@ public class UserServiceDirectoryImpl implements UserService {
 		Promise<JsonArray> promise = Promise.promise();
 
 		String query = " MATCH (u:User)-[:IN]->(pg:ProfileGroup)-[:HAS_PROFILE]->(profile:Profile) " +
-				" WHERE u.id IN {ownerIds} " +
+				" WHERE u.id IN $ownerIds " +
 				" WITH profile, u " +
 				" ORDER BY profile.name " +
 				" RETURN distinct u.id as id ";
@@ -79,7 +79,7 @@ public class UserServiceDirectoryImpl implements UserService {
 
 		String query = " MATCH (u:User)-[:IN]->(pg:ProfileGroup)-[:HAS_PROFILE]->(profile:Profile), " +
 				" (pg)-[:DEPENDS]->(s:Structure) " +
-				" WHERE s.id IN {structureIds} " +
+				" WHERE s.id IN $structureIds " +
 				" WITH profile, u " +
 				" ORDER BY profile.name " +
 				" RETURN distinct u.id as id ";
