@@ -25,7 +25,10 @@
     }
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": ["prettier --write", "eslint --fix --no-warn-ignored"]
+    "**/*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --fix --no-warn-ignored"
+    ]
   },
   "dependencies": {
     "@dnd-kit/core": "6.3.1",
@@ -82,5 +85,17 @@
   "engines": {
     "node": "20"
   },
-  "nx": {}
+  "nx": {},
+  "pnpm": {
+    "overrides": {
+      "axios@>=1.0.0 <1.21.1": "^1.21.1",
+      "follow-redirects@>=1.0.0 <1.16.3": "^1.16.3",
+      "form-data@>=4.0.0 <4.0.6": "^4.0.6",
+      "@xmldom/xmldom@>=0.8.0 <0.8.15": "^0.8.15",
+      "markdown-it@>=14.0.0 <14.3.3": "^14.3.3",
+      "linkify-it@>=5.0.0 <5.0.2": "^5.0.2",
+      "prosemirror-model@>=1.0.0 <1.25.12": "^1.25.12",
+      "prosemirror-view@>=1.0.0 <1.42.3": "^1.42.3"
+    }
+  }
 }
